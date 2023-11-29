@@ -7,6 +7,14 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePath);
 });
 
+const absolutePathAsset = __dirname + "/public";
+
+app.use("/public", express.static(absolutePathAsset));
+
+app.get("/json", (req, res) => {
+  res.json({ message: "Hello json" });
+});
+
 console.log("Hello World");
 
 module.exports = app;
