@@ -11,5 +11,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21"
   }
 }
