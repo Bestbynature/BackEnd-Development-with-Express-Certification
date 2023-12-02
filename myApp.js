@@ -15,6 +15,7 @@ app.use("/", function (req, res, next) {
   next();
 });
 
+// chaining middlewaresgit commit -m "Add middleware to serve static assets"
 app.get(
   "/now",
   function (req, res, next) {
