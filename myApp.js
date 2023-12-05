@@ -1,5 +1,6 @@
 let express = require("express");
 let app = express();
+let moment = require("moment-timezone");
 
 // app.get("/", (req, res) => res.send("Hello Express"));
 app.get("/", (req, res) => {
@@ -15,20 +16,30 @@ app.use("/", function (req, res, next) {
   next();
 });
 
-app.get(
-  "/now",
-  function (req, res, next) {
-    req.time = new Date().toString();
-    next();
-  },
-  function (req, res) {
-    res.json({
-      req: {
-        time: req.time,
-      },
-    });
-  },
-);
+const middleware = (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+};
+
+app.get("/now", middleware, (req, res) => {
+  res.send({
+    time: req.time,
+  });
+});
+// app.get(
+//   "/now",
+//   function (req, res, next) {
+//     req.time = moment().tz("Africa/Lagos").format();
+//     // req.time = new Date().toString();
+//     next();
+//   },
+//   function (req, res) {
+//     console.log(req.time);
+//     res.send({
+//       time: req.time,
+//     });
+//   },
+// );
 
 // using middleware
 app.use("/public", express.static(absolutePathAsset));
