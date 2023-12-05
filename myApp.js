@@ -41,6 +41,22 @@ app.get("/now", middleware, (req, res) => {
 //   },
 // );
 
+// chaining middlewaresgit commit -m "Add middleware to serve static assets"
+app.get(
+  "/now",
+  function (req, res, next) {
+    req.time = new Date().toString();
+    next();
+  },
+  function (req, res) {
+    res.json({
+      req: {
+        time: req.time,
+      },
+    });
+  },
+);
+
 // using middleware
 app.use("/public", express.static(absolutePathAsset));
 
