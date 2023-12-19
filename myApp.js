@@ -7,6 +7,8 @@ app.get("/", (req, res) => {
   res.sendFile(absolutePath);
 });
 
+// make absolute path for assets
+
 const absolutePathAsset = __dirname + "/public";
 
 // middleware logger or every route and for all http methods
